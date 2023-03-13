@@ -1,7 +1,13 @@
 package revature.paulfranklin.ecommerce.service;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import revature.paulfranklin.ecommerce.dtos.responses.Principal;
 import revature.paulfranklin.ecommerce.utility.JwtConfig;
 
 @Service
@@ -11,4 +17,39 @@ public class EcommerceTokenService {
 	public EcommerceTokenService(JwtConfig jwtConfig) {
 		this.jwtConfig = jwtConfig;
 	}
+	
+    public String createNewToken(Principal subject) {
+        long now = System.currentTimeMillis();
+
+        JwtBuilder tokenBuilder = Jwts.builder()
+                .setId(subject.getUserId())
+                .setIssuer("Ecommerce")
+                .setIssuedAt(new Date(now))
+                .setExpiration(new Date(now + jwtConfig.getExpiration()))
+                .setSubject(subject.getUsername())
+                .signWith(jwtConfig.getSigAlg(), jwtConfig.getSigningKey());
+
+        String token = tokenBuilder.compact();
+        subject.setToken(token);
+        return token;
+    }
+
+    public Principal retrievePrincipalFromToken(String token) {
+        Claims claims;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(jwtConfig.getSigningKey())
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            throw new RuntimeException("Not Authorized");
+        }
+
+        Principal principal = new Principal(
+                claims.getId(),
+                claims.getSubject()
+        );
+        principal.setToken(token);
+        return principal;
+    }
 }
