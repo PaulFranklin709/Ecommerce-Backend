@@ -9,7 +9,7 @@ public class Principal {
         super();
     }
 
-    public Principal(String userId, String username, String email, String registered, boolean active, String role) {
+    public Principal(String userId, String username) {
         this.userId = userId;
         this.username = username;
         this.token = null;
