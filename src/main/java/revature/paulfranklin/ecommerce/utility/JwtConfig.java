@@ -2,10 +2,10 @@ package revature.paulfranklin.ecommerce.utility;
 
 import java.io.IOException;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Properties;
 
 import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.stereotype.Component;
 
@@ -24,8 +24,10 @@ public class JwtConfig {
         } catch(IOException e) {
             e.printStackTrace();
         }
-
-        byte[] saltyBytes = DatatypeConverter.parseBase64Binary(props.getProperty("salt"));
+//        byte[] saltyBytes = DatatypeConverter.parseBase64Binary(props.getProperty("salt"));
+//        https://www.baeldung.com/java-base64-encode-and-decode
+//        https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html#parseBase64Binary(java.lang.String)
+        byte[] saltyBytes = Base64.getDecoder().decode(props.getProperty("salt"));
         signingKey = new SecretKeySpec(saltyBytes, sigAlg.getJcaName());
     }
 
