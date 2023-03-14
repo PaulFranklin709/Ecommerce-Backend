@@ -18,16 +18,16 @@ public class EcommerceProduct {
     private String productDescription;
 
     @Column(nullable = false)
-    private Double producePrice;
+    private Double productPrice;
 
     public EcommerceProduct() {
     }
 
-    public EcommerceProduct(String productId, String productName, String productDescription, Double producePrice) {
+    public EcommerceProduct(String productId, String productName, String productDescription, Double productPrice) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
-        this.producePrice = producePrice;
+        this.productPrice = productPrice;
     }
 
     public String getProductId() {
@@ -54,11 +54,11 @@ public class EcommerceProduct {
         this.productDescription = productDescription;
     }
 
-    public Double getProducePrice() {
-        return producePrice;
+    public Double getProductPrice() {
+        return productPrice;
     }
 
-    public void setProducePrice(Double producePrice) {
-        this.producePrice = producePrice;
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
     }
 }
