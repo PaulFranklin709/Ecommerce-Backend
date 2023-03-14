@@ -35,7 +35,7 @@ public class EcommerceUserController {
         try {
             userService.newUser(req);
         } catch (Exception exception) {
-        	throw new RuntimeException("Did not create user");
+        	throw new RuntimeException(exception.getMessage());
         }
     }
 }
