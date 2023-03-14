@@ -7,4 +7,5 @@ import revature.paulfranklin.ecommerce.model.EcommerceUser;
 
 @Repository
 public interface EcommerceUserDAOInterface extends CrudRepository<EcommerceUser, String> {
+    EcommerceUser findByUsername(String username);
 }
