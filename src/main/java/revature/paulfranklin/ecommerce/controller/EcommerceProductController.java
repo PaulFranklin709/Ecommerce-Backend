@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import revature.paulfranklin.ecommerce.model.EcommerceProduct;
 import revature.paulfranklin.ecommerce.service.EcommerceProductService;
-import revature.paulfranklin.ecommerce.service.EcommerceUserService;
+
+import java.util.ArrayList;
 
 @CrossOrigin
 @RestController
@@ -18,7 +19,7 @@ public class EcommerceProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Iterable<EcommerceProduct> getProducts() {
+    public ArrayList<EcommerceProduct> getProducts() {
         return productService.findAllProducts();
     }
 }

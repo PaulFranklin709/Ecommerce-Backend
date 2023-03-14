@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import revature.paulfranklin.ecommerce.dao.EcommerceProductDAOInterface;
 import revature.paulfranklin.ecommerce.model.EcommerceProduct;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 @Service
 public class EcommerceProductService {
     private final EcommerceProductDAOInterface productRepository;
@@ -12,8 +15,11 @@ public class EcommerceProductService {
         this.productRepository = productRepository;
     }
 
-    public Iterable<EcommerceProduct> findAllProducts() {
-        Iterable<EcommerceProduct> products = productRepository.findAll();
-        return productRepository.findAll();
+    public ArrayList<EcommerceProduct> findAllProducts() {
+        ArrayList<EcommerceProduct> products = productRepository.findAll();
+        if (products.size() == 0) {
+            products.add(new EcommerceProduct(UUID.randomUUID().toString(), "First Product", "First Product Description", 1.00));
+        }
+        return products;
     }
 }
