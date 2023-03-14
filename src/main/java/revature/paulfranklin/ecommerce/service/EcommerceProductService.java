@@ -19,6 +19,7 @@ public class EcommerceProductService {
         ArrayList<EcommerceProduct> products = productRepository.findAll();
         if (products.size() == 0) {
             products.add(new EcommerceProduct(UUID.randomUUID().toString(), "First Product", "First Product Description", 1.00));
+            products.add(new EcommerceProduct(UUID.randomUUID().toString(), "Second Product", "Second Product Description", 1.01));
         }
         return products;
     }
