@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
 import revature.paulfranklin.ecommerce.dtos.requests.NewUserRequest;
+import revature.paulfranklin.ecommerce.dtos.responses.Principal;
 import revature.paulfranklin.ecommerce.service.EcommerceTokenService;
 import revature.paulfranklin.ecommerce.service.EcommerceUserService;
 
@@ -27,7 +28,7 @@ public class EcommerceUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void newUser(@RequestBody NewUserRequest req) {
+    public Principal newUser(@RequestBody NewUserRequest req) {
         if (req.getUsername() == null || req.getPassword() == null) {
             throw new RuntimeException("Missing username or password");
         }
@@ -37,5 +38,10 @@ public class EcommerceUserController {
         } catch (Exception exception) {
         	throw new RuntimeException(exception.getMessage());
         }
+
+        Principal principal = new Principal(req.getUsername(), req.getPassword());
+        tokenService.createNewToken(principal);
+
+        return principal;
     }
 }
