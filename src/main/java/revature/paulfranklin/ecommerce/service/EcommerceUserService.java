@@ -6,6 +6,8 @@ import revature.paulfranklin.ecommerce.dao.EcommerceUserDAOInterface;
 import revature.paulfranklin.ecommerce.dtos.requests.NewUserRequest;
 import revature.paulfranklin.ecommerce.model.EcommerceUser;
 
+import java.util.UUID;
+
 @Service
 public class EcommerceUserService {
     private final EcommerceUserDAOInterface userRepository;
@@ -15,7 +17,7 @@ public class EcommerceUserService {
     }
 
     public void newUser(NewUserRequest req) {
-        EcommerceUser user = new EcommerceUser();
+        EcommerceUser user = new EcommerceUser(UUID.randomUUID().toString(), req.getUsername(), req.getPassword());
         try {
             userRepository.save(user);
         } catch (Exception exception) {
