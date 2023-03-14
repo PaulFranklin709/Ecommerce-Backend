@@ -3,6 +3,7 @@ package revature.paulfranklin.ecommerce.service;
 import org.springframework.stereotype.Service;
 
 import revature.paulfranklin.ecommerce.dao.EcommerceUserDAOInterface;
+import revature.paulfranklin.ecommerce.dtos.requests.NewLoginRequest;
 import revature.paulfranklin.ecommerce.dtos.requests.NewUserRequest;
 import revature.paulfranklin.ecommerce.model.EcommerceUser;
 
@@ -23,5 +24,9 @@ public class EcommerceUserService {
         } catch (Exception exception) {
             throw new RuntimeException("Database issue");
         }
+    }
+
+    public EcommerceUser loginUser(NewLoginRequest req) {
+        return this.userRepository.findByUsername(req.getUsername());
     }
 }
