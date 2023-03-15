@@ -1,4 +1,4 @@
-package revature.paulfranklin.ecommerce;
+package revature.paulfranklin.ecommerce.service;
 
 import org.junit.Before;
 import org.junit.Test;
