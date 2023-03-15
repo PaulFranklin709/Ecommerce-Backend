@@ -36,7 +36,7 @@ public class EcommerceOrderController {
         }
 
         Principal principal = tokenService.retrievePrincipalFromToken(token);
-        EcommerceUser user = userService.findUserById(principal.getUserId());
+        EcommerceUser user = userService.findUser(principal.getUsername());
 
         orderService.createOrder(req, user);
     }
