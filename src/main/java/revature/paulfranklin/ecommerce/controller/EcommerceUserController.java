@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 
 import revature.paulfranklin.ecommerce.dtos.requests.NewUserRequest;
 import revature.paulfranklin.ecommerce.dtos.responses.Principal;
+import revature.paulfranklin.ecommerce.model.EcommerceUser;
 import revature.paulfranklin.ecommerce.service.EcommerceTokenService;
 import revature.paulfranklin.ecommerce.service.EcommerceUserService;
 
@@ -39,7 +40,8 @@ public class EcommerceUserController {
         	throw new RuntimeException(exception.getMessage());
         }
 
-        Principal principal = new Principal(req.getUsername(), req.getPassword());
+        EcommerceUser user = userService.findUser(req.getUsername());
+        Principal principal = new Principal(user.getUserId(), user.getUsername());
         tokenService.createNewToken(principal);
 
         return principal;
