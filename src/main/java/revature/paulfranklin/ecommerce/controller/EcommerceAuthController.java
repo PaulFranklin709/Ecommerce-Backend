@@ -29,7 +29,7 @@ public class EcommerceAuthController {
 
         EcommerceUser user = null;
         try {
-            user = userService.loginUser(req);
+            user = userService.findUser(req.getUsername());
 
             if (!req.getPassword().equals(user.getPassword())) {
                 System.out.println(req.getPassword());
