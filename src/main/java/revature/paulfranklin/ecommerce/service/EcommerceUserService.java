@@ -7,6 +7,7 @@ import revature.paulfranklin.ecommerce.dtos.requests.NewLoginRequest;
 import revature.paulfranklin.ecommerce.dtos.requests.NewUserRequest;
 import revature.paulfranklin.ecommerce.model.EcommerceUser;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -28,5 +29,19 @@ public class EcommerceUserService {
 
     public EcommerceUser loginUser(NewLoginRequest req) {
         return this.userRepository.findByUsername(req.getUsername());
+    }
+
+    public EcommerceUser findUserById(String userId) {
+        try {
+            Optional<EcommerceUser> user = userRepository.findById(userId);
+            if (user.isPresent()) {
+                return user.get();
+            }
+            else {
+                throw new Exception("Did not find user");
+            }
+        } catch(Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
     }
 }
