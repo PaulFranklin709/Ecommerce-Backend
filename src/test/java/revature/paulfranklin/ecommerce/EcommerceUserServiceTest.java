@@ -17,9 +17,22 @@ public class EcommerceUserServiceTest {
 
     @Test
     public void test_newUser_givenNewUserRequest() {
+        // Arrange
+
+        // Act
+
+        // Assert
     }
 
     @Test
     public void test_findUser_givenUsername() {
+        // Arrange
+        String username = "fwqeojfwe";
+
+        // Act
+        sut.findUser(username);
+
+        // Assert
+        Mockito.verify(mockUserRepo, Mockito.times(1)).findByUsername(username);
     }
 }
