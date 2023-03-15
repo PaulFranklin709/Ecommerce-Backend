@@ -27,21 +27,7 @@ public class EcommerceUserService {
         }
     }
 
-    public EcommerceUser loginUser(NewLoginRequest req) {
-        return this.userRepository.findByUsername(req.getUsername());
-    }
-
-    public EcommerceUser findUserById(String userId) {
-        try {
-            Optional<EcommerceUser> user = userRepository.findById(userId);
-            if (user.isPresent()) {
-                return user.get();
-            }
-            else {
-                throw new Exception("Did not find user");
-            }
-        } catch(Exception exception) {
-            throw new RuntimeException(exception.getMessage());
-        }
+    public EcommerceUser findUser(String username) {
+        return this.userRepository.findByUsername(username);
     }
 }
