@@ -41,7 +41,7 @@ public class EcommerceUserController {
         }
 
         EcommerceUser user = userService.findUser(req.getUsername());
-        Principal principal = new Principal(user.getUserId(), user.getUsername());
+        Principal principal = new Principal(user.getUserId(), user.getUsername(), user.getCountry());
         tokenService.createNewToken(principal);
 
         return principal;

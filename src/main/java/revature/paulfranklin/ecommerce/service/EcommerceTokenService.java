@@ -27,6 +27,7 @@ public class EcommerceTokenService {
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + jwtConfig.getExpiration()))
                 .setSubject(subject.getUsername())
+                .claim("country", subject.getCountry())
                 .signWith(jwtConfig.getSigAlg(), jwtConfig.getSigningKey());
 
         String token = tokenBuilder.compact();
@@ -47,7 +48,8 @@ public class EcommerceTokenService {
 
         Principal principal = new Principal(
                 claims.getId(),
-                claims.getSubject()
+                claims.getSubject(),
+                claims.get("country", String.class)
         );
         principal.setToken(token);
         return principal;

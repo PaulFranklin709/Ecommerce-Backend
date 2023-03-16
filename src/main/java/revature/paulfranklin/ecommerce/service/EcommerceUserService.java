@@ -19,7 +19,7 @@ public class EcommerceUserService {
     }
 
     public void newUser(NewUserRequest req) {
-        EcommerceUser user = new EcommerceUser(UUID.randomUUID().toString(), req.getUsername(), req.getPassword());
+        EcommerceUser user = new EcommerceUser(UUID.randomUUID().toString(), req.getUsername(), req.getPassword(), req.getCountry());
         try {
             userRepository.save(user);
         } catch (Exception exception) {

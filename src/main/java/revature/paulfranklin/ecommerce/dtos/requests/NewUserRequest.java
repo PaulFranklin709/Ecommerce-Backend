@@ -3,10 +3,12 @@ package revature.paulfranklin.ecommerce.dtos.requests;
 public class NewUserRequest {
     private String username;
     private String password;
+    private String country;
 
-    public NewUserRequest(String username, String password) {
+    public NewUserRequest(String username, String password, String country) {
         this.username = username;
         this.password = password;
+        this.country = country;
     }
 
     public String getUsername() {
@@ -23,5 +25,13 @@ public class NewUserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

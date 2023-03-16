@@ -3,15 +3,17 @@ package revature.paulfranklin.ecommerce.dtos.responses;
 public class Principal {
     private String userId;
     private String username;
+    private String country;
     private String token;
 
     public Principal() {
         super();
     }
 
-    public Principal(String userId, String username) {
+    public Principal(String userId, String username, String country) {
         this.userId = userId;
         this.username = username;
+        this.country = country;
         this.token = null;
     }
 
@@ -29,6 +31,14 @@ public class Principal {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getToken() {

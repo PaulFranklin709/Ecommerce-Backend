@@ -40,7 +40,7 @@ public class EcommerceAuthController {
             throw new RuntimeException(exception.getMessage());
         }
 
-        Principal principal = new Principal(user.getUserId(), user.getUsername());
+        Principal principal = new Principal(user.getUserId(), user.getUsername(), user.getCountry());
         String token = tokenService.createNewToken(principal);
 
         return principal;

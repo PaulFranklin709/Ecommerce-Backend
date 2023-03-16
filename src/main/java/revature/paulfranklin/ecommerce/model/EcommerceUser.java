@@ -17,13 +17,17 @@ public class EcommerceUser {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "country", nullable = false)
+    private String country;
+
     public EcommerceUser() {
     }
 
-    public EcommerceUser(String userId, String username, String password) {
+    public EcommerceUser(String userId, String username, String password, String country) {
         this.userId = userId;
         this.username = username;
         this.password = password;
+        this.country = country;
     }
 
     public String getUserId() {
@@ -48,5 +52,13 @@ public class EcommerceUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
