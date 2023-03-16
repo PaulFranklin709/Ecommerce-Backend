@@ -30,8 +30,8 @@ public class EcommerceUserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Principal newUser(@RequestBody NewUserRequest req) {
-        if (req.getUsername() == null || req.getPassword() == null) {
-            throw new RuntimeException("Missing username or password");
+        if (req.getUsername() == null || req.getPassword() == null || req.getCountry() == null) {
+            throw new RuntimeException("Missing username or password or country");
         }
 
         try {
